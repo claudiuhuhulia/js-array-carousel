@@ -9,11 +9,16 @@ console.log('js-ok');
 6. CREO L'ARRAY SOURCES CON GLI INDIRIZZI DELLE IMMAGINI
 7. PER OGNI SOURCES CREO IL TAG IMG E LO COLLEGO ALLA DOM
 8. AGGIUNGO IL CICLO INFINITO CAMBIANDO L'INDEX NUMBER UTILIZZANDO UN IF
-
+9. RECUPERO LE THUMBNAILS DALLA DOM
+10. RENDO LA PRIMA THUMBNAIL ATTIVA  
+11. CAMBIO LA THUMBNAIL ATTIVA AL CLICK DEL TASTO AGGIUNGENDO LA CLASSE 'ACTVIE'
 */
 
 const next= document.getElementById('next');
 const prev = document.getElementById('prev');
+const thumbnails = document.querySelectorAll('.thumbnails img');
+
+
 
 const sources = ['img/01.webp','img/02.webp','img/03.webp','img/04.webp','img/05.webp' ]
 const gallery= document.querySelector('.gallery');
@@ -36,9 +41,14 @@ let currentIndex = 0;
 
 images[currentIndex].classList.add('active');
 
+thumbnails[currentIndex].classList.add('active');
+
+
 next.addEventListener('click', function(){
 
     images[currentIndex].classList.remove('active');
+
+    thumbnails[currentIndex].classList.remove('active');
 
     currentIndex++;
 
@@ -46,17 +56,23 @@ next.addEventListener('click', function(){
 
     images[currentIndex].classList.add('active');
 
+    thumbnails[currentIndex].classList.add('active');
+
 })
 
 prev.addEventListener('click', function(){
     
     images[currentIndex].classList.remove('active');
 
+    thumbnails[currentIndex].classList.remove('active');
+
     currentIndex--;
 
-    if(currentIndex < 0) currentIndex = 4;
+    if(currentIndex < 0) currentIndex = images.length - 1;
 
     images[currentIndex].classList.add('active');
+
+    thumbnails[currentIndex].classList.add('active');
 
 })
 
